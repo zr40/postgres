@@ -2012,7 +2012,7 @@ exec_command_pset(PsqlScanState scan_state, bool active_branch)
 			int			i;
 			static const char *const my_list[] = {
 				"border", "columns", "expanded", "fieldsep", "fieldsep_zero",
-				"footer", "format", "linestyle", "null",
+				"footer", "format", "linestyle", "true", "false", "null",
 				"numericlocale", "pager", "pager_min_lines",
 				"recordsep", "recordsep_zero",
 				"tableattr", "title", "tuples_only",
@@ -3910,6 +3910,26 @@ do_pset(const char *param, const char *value, printQueryOpt *popt, bool quiet)
 		}
 	}
 
+	/* boolean TRUE display */
+	else if (strcmp(param, "true") == 0)
+	{
+		if (value)
+		{
+			free(popt->truePrint);
+			popt->truePrint = pg_strdup(value);
+		}
+	}
+
+	/* boolean FALSE display */
+	else if (strcmp(param, "false") == 0)
+	{
+		if (value)
+		{
+			free(popt->falsePrint);
+			popt->falsePrint = pg_strdup(value);
+		}
+	}
+
 	/* field separator for unaligned text */
 	else if (strcmp(param, "fieldsep") == 0)
 	{
@@ -4105,6 +4125,20 @@ printPsetInfo(const char *param, struct printQueryOpt *popt)
 			   popt->nullPrint ? popt->nullPrint : "");
 	}
 
+	/* show true display */
+	else if (strcmp(param, "true") == 0)
+	{
+		printf(_("Boolean TRUE display is \"%s\".\n"),
+			   popt->truePrint ? popt->truePrint : "t");
+	}
+
+	/* show false display */
+	else if (strcmp(param, "false") == 0)
+	{
+		printf(_("Boolean FALSE display is \"%s\".\n"),
+			   popt->falsePrint ? popt->falsePrint : "f");
+	}
+
 	/* show locale-aware numeric output */
 	else if (strcmp(param, "numericlocale") == 0)
 	{
@@ -4278,6 +4312,14 @@ pset_value_string(const char *param, struct printQueryOpt *popt)
 		return psprintf("%s", _align2string(popt->topt.format));
 	else if (strcmp(param, "linestyle") == 0)
 		return psprintf("%s", get_line_style(&popt->topt)->name);
+	else if (strcmp(param, "true") == 0)
+		return pset_quoted_string(popt->truePrint
+								  ? popt->truePrint
+								  : "t");
+	else if (strcmp(param, "false") == 0)
+		return pset_quoted_string(popt->falsePrint
+								  ? popt->falsePrint
+								  : "f");
 	else if (strcmp(param, "null") == 0)
 		return pset_quoted_string(popt->nullPrint
 								  ? popt->nullPrint
