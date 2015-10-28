@@ -164,6 +164,9 @@ typedef struct printQueryOpt
 {
 	printTableOpt topt;			/* the options above */
 	char	   *nullPrint;		/* how to print null entities */
+	char	   *truePrint;		/* how to print TRUE booleans */
+	char	   *falsePrint;		/* how to print FALSE booleans */
+	bool		quote;			/* quote all values as much as possible */
 	char	   *title;			/* override title */
 	char	  **footers;		/* override footer (default is "(xx rows)") */
 	bool		translate_header;		/* do gettext on column headers */

@@ -262,7 +262,7 @@ slashUsage(unsigned short int pager)
 	fprintf(output, _("  \\H                     toggle HTML output mode (currently %s)\n"),
 			ON(pset.popt.topt.format == PRINT_HTML));
 	fprintf(output, _("  \\pset [NAME [VALUE]]   set table output option\n"
-					  "                         (NAME := {format|border|expanded|fieldsep|fieldsep_zero|footer|null|\n"
+					  "                         (NAME := {format|border|expanded|fieldsep|fieldsep_zero|footer|true|false|null|\n"
 					  "                         numericlocale|recordsep|recordsep_zero|tuples_only|title|tableattr|pager|\n"
 					  "                         unicode_border_linestyle|unicode_column_linestyle|unicode_header_linestyle})\n"));
 	fprintf(output, _("  \\t [on|off]            show only rows (currently %s)\n"),
@@ -375,6 +375,8 @@ helpVariables(unsigned short int pager)
 	fprintf(output, _("  footer             enable or disable display of the table footer [on, off]\n"));
 	fprintf(output, _("  format             set output format [unaligned, aligned, wrapped, html, asciidoc, ...]\n"));
 	fprintf(output, _("  linestyle          set the border line drawing style [ascii, old-ascii, unicode]\n"));
+	fprintf(output, _("  true               set the string to be prined in place of a TRUE value\n"));
+	fprintf(output, _("  false              set the string to be prined in place of a FALSE value\n"));
 	fprintf(output, _("  null               set the string to be printed in place of a null value\n"));
 	fprintf(output, _("  numericlocale      enable or disable display of a locale-specific character to separate\n"
 					  "                     groups of digits [on, off]\n"));

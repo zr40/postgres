@@ -3327,6 +3327,13 @@ printQuery(const PGresult *result, const printQueryOpt *opt,
 					cell = format_numeric_locale(cell);
 					mustfree = true;
 				}
+				else if (PQftype(result, c) == BOOLOID)
+				{
+					if (cell[0] == 't' && opt->truePrint)
+						cell = opt->truePrint;
+					else if (cell[0] == 'f' && opt->falsePrint)
+						cell = opt->falsePrint;
+				}
 			}
 
 			translate = (opt->translate_columns && opt->translate_columns[c]);

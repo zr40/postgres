@@ -2421,6 +2421,26 @@ lo_import 152801
           </varlistentry>
 
           <varlistentry>
+          <term><literal>true</literal></term>
+          <listitem>
+          <para>
+          Sets the string to be printed in place of a boolean TRUE value.
+          The default is to print a 't' character.
+          </para>
+          </listitem>
+          </varlistentry>
+
+          <varlistentry>
+          <term><literal>false</literal></term>
+          <listitem>
+          <para>
+          Sets the string to be printed in place of a boolean FALSE value.
+          The default is to print an 'f' character.
+          </para>
+          </listitem>
+          </varlistentry>
+
+          <varlistentry>
           <term><literal>null</literal></term>
           <listitem>
           <para>
