@@ -3576,7 +3576,7 @@ static struct config_string ConfigureNamesString[] =
 			GUC_LIST_INPUT
 		},
 		&postgres_strict_disable_string,
-		"none",
+		"all",
 		check_postgres_strict_disable, assign_postgres_strict_disable, NULL
 	},
 
