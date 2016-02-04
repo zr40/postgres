@@ -517,6 +517,7 @@ static bool data_checksums;
 static int	wal_segment_size;
 static bool integer_datetimes;
 static bool assert_enabled;
+static char *postgres_strict_disable_string;
 
 /* should be static, but commands/variable.c needs to get at this */
 char	   *role_string;
@@ -3648,6 +3649,18 @@ static struct config_string ConfigureNamesString[] =
 		&wal_consistency_checking_string,
 		"",
 		check_wal_consistency_checking, assign_wal_consistency_checking, NULL
+	},
+
+	{
+		{"postgres_strict.disable", PGC_USERSET, DEVELOPER_OPTIONS,
+			gettext_noop("Disables specified postgres-strict features"),
+			gettext_noop("The special values 'all' and 'none' can be used to disable "
+						 "or enable all strict checks, respectively."),
+			GUC_LIST_INPUT
+		},
+		&postgres_strict_disable_string,
+		"none",
+		check_postgres_strict_disable, assign_postgres_strict_disable, NULL
 	},
 
 	/* End-of-list marker */
