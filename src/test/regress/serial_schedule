@@ -122,6 +122,7 @@ test: misc
 test: psql
 test: async
 test: dbsize
+test: postgres_strict
 test: misc_functions
 test: rules
 test: psql_crosstab
