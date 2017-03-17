@@ -107,6 +107,8 @@ fieldsep_zero            off
 footer                   on
 format                   aligned
 linestyle                ascii
+true                     't'
+false                    'f'
 null                     ''
 numericlocale            off
 pager                    1
